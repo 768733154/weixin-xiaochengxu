@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/tetris/index",
+    "pages/snake/index",
+    "pages/gomoku/index",
+    "pages/game2048/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "怀古小游戏",
+    "navigationBarBackgroundColor": "#2f2216",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f6efe4",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

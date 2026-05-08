@@ -1,0 +1,62 @@
+<view class="arcade-page">
+  <view class="cabinet">
+    <view class="cabinet-top">
+      <view class="brand">怀古方块机</view>
+      <view class="sub">八十年代街机风</view>
+    </view>
+
+    <view class="screen-shell">
+      <view class="meta">
+        <text>分数 {{score}}</text>
+        <text>消行 {{lines}}</text>
+      </view>
+
+      <view class="screen">
+        <view class="scanlines"></view>
+        <view class="playfield">
+          <view class="side-decor left"></view>
+          <view class="board" style="{{boardStyle}}">
+            <view wx:for="{{cells}}" wx:key="index" class="cell {{item ? 'filled' : ''}}"></view>
+          </view>
+          <view class="side-decor right"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="panel">
+      <view class="func-row">
+        <button size="mini" class="btn-func" bindtap="start">开始</button>
+        <button size="mini" class="btn-func" bindtap="pause">暂停</button>
+      </view>
+
+      <view class="controls">
+        <view class="dpad">
+          <button class="btn-dir up" bindtap="rotate">旋转</button>
+          <view class="mid-row">
+            <button
+              class="btn-dir"
+              bindtap="left"
+              bindtouchstart="startFastLeft"
+              bindtouchend="stopFastLeft"
+              bindtouchcancel="stopFastLeft"
+            >左移</button>
+            <button
+              class="btn-dir"
+              bindtap="right"
+              bindtouchstart="startFastRight"
+              bindtouchend="stopFastRight"
+              bindtouchcancel="stopFastRight"
+            >右移</button>
+          </view>
+          <button
+            class="btn-dir down"
+            bindtap="down"
+            bindtouchstart="startFastDrop"
+            bindtouchend="stopFastDrop"
+            bindtouchcancel="stopFastDrop"
+          >下落</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="card">
+    <view class="mode-switch">
+      <button size="mini" class="mode-btn {{mode==='single' ? 'active' : ''}}" bindtap="switchToSingle">人机对战</button>
+      <button size="mini" class="mode-btn {{mode==='online' ? 'active' : ''}}" bindtap="switchToOnline">好友对战</button>
+    </view>
+
+    <view class="tips">{{statusText}}</view>
+    <view class="difficulty" wx:if="{{mode==='single'}}">
+      <text class="difficulty-label">难度</text>
+      <button size="mini" class="diff-btn {{difficulty==='easy' ? 'active' : ''}}" data-level="easy" bindtap="setDifficulty">简单</button>
+      <button size="mini" class="diff-btn {{difficulty==='normal' ? 'active' : ''}}" data-level="normal" bindtap="setDifficulty">普通</button>
+      <button size="mini" class="diff-btn {{difficulty==='hard' ? 'active' : ''}}" data-level="hard" bindtap="setDifficulty">困难</button>
+    </view>
+    <view class="tips" wx:if="{{mode==='online'}}">房间：{{roomId || '未加入'}} ｜ 你是：{{roleText}} ｜ 当前：{{turnText}}</view>
+
+    <view class="room-actions" wx:if="{{mode==='online'}}">
+      <button size="mini" bindtap="createRoom">创建房间</button>
+      <button size="mini" open-type="share" wx:if="{{roomId}}">分享邀请</button>
+      <input class="room-input" placeholder="输入房间号" value="{{roomInput}}" bindinput="onRoomInput" />
+      <button size="mini" bindtap="joinRoom">加入房间</button>
+      <button size="mini" bindtap="leaveRoom">退出联机</button>
+    </view>
+
+    <view class="board">
+      <view
+        wx:for="{{cells}}"
+        wx:key="index"
+        class="point r{{Math.floor(index / 15)}} c{{index % 15}}"
+        data-index="{{index}}"
+        bindtap="tapCell"
+      >
+        <view class="cross-h"></view>
+        <view class="cross-v"></view>
+        <view wx:if="{{index===112}}" class="star"></view>
+        <view wx:if="{{item===1}}" class="piece black"></view>
+        <view wx:if="{{item===2}}" class="piece white"></view>
+      </view>
+    </view>
+
+    <button class="btn" bindtap="resetBoard">重新开始</button>
+  </view>
+</view>

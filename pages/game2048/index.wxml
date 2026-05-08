@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="card">
+    <view class="meta"><text>分数 {{score}}</text><button size="mini" bindtap="reset">重开</button></view>
+    <view class="board">
+      <view wx:for="{{cells}}" wx:key="index" class="cell n{{item}}">{{item || ''}}</view>
+    </view>
+    <view class="ctrl">
+      <button bindtap="up">上</button>
+      <view class="row"><button bindtap="left">左</button><button bindtap="right">右</button></view>
+      <button bindtap="down">下</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+.meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:16rpx; }
+.board { display:grid; grid-template-columns:repeat(4, 1fr); gap:10rpx; background:#8c6a47; padding:12rpx; border-radius:12rpx; }
+.cell { width:140rpx; height:140rpx; border-radius:12rpx; background:#f3e2c8; display:flex; align-items:center; justify-content:center; font-size:40rpx; font-weight:700; color:#5d4025; }
+.n2 { background:#f5e8d5; }
+.n4 { background:#efd9b8; }
+.n8 { background:#e8be8b; }
+.n16,.n32 { background:#dc9d62; color:#fff; }
+.n64,.n128,.n256,.n512,.n1024,.n2048 { background:#b56d35; color:#fff; }
+.ctrl { margin-top:16rpx; display:flex; flex-direction:column; align-items:center; gap:8rpx; }
+.row { display:flex; gap:30rpx; }
+.ctrl button { width:140rpx; }

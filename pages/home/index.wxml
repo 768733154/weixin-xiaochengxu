@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="card hero">
+    <view class="title">怀古小游戏合集</view>
+    <view class="sub">古风配色 · 经典玩法</view>
+  </view>
+
+  <navigator url="/pages/tetris/index" class="card nav">俄罗斯方块</navigator>
+  <navigator url="/pages/snake/index" class="card nav">贪吃蛇</navigator>
+  <navigator url="/pages/gomoku/index" class="card nav">五子棋</navigator>
+  <navigator url="/pages/game2048/index" class="card nav">2048</navigator>
+</view>

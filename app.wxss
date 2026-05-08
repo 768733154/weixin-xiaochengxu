@@ -1,0 +1,24 @@
+page {
+  background: linear-gradient(180deg, #f6efe4 0%, #eadcc8 100%);
+  min-height: 100%;
+  color: #3a2b1a;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+.container {
+  padding: 32rpx;
+}
+
+.card {
+  background: rgba(255, 250, 242, 0.95);
+  border: 2rpx solid #d8c3a5;
+  border-radius: 24rpx;
+  box-shadow: 0 10rpx 24rpx rgba(58, 43, 26, 0.08);
+  padding: 28rpx;
+}
+
+.btn {
+  margin-top: 20rpx;
+  border-radius: 999rpx;
+  font-weight: 600;
+}

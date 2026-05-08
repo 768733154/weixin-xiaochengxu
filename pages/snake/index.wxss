@@ -1,0 +1,11 @@
+.meta { display:flex; justify-content:space-between; margin-bottom:16rpx; }
+.board { display:grid; grid-template-columns:repeat(16, 1fr); gap:4rpx; background:#b69a78; padding:8rpx; border-radius:12rpx; }
+.cell { width: 36rpx; height: 36rpx; background:#f9f1e5; }
+.snake { background:#7a5834; }
+.head { background:#50361e; }
+.food { background:#b13e3c; border-radius:50%; }
+.ctrl { display:flex; gap:10rpx; margin-top:16rpx; }
+.ctrl .btn { flex:1; background:#7a5834; color:#fff; }
+.dpad { margin-top:16rpx; display:flex; flex-direction:column; align-items:center; gap:8rpx; }
+.row { display:flex; gap:20rpx; }
+.dpad button { width:120rpx; }

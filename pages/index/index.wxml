@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="card panel">
+    <view class="title">怀古诗词闯关</view>
+    <view class="meta">
+      <text>第 {{current}} / {{total}} 题</text>
+      <text>得分 {{score}}</text>
+      <text>剩余 {{timeLeft}}s</text>
+    </view>
+  </view>
+
+  <view class="card question-card" wx:if="{{question}}">
+    <view class="question">{{question.title}}</view>
+
+    <view class="options">
+      <view
+        class="option {{selected === index ? 'selected' : ''}} {{answered && index === question.answer ? 'right' : ''}} {{answered && selected === index && index !== question.answer ? 'wrong' : ''}}"
+        wx:for="{{question.options}}"
+        wx:key="index"
+        data-index="{{index}}"
+        bindtap="chooseOption"
+      >
+        <text class="opt-prefix">{{String.fromCharCode(65 + index)}}.</text>
+        <text>{{item}}</text>
+      </view>
+    </view>
+
+    <view class="message" wx:if="{{message}}">{{message}}</view>
+
+    <button class="btn next" wx:if="{{answered && !gameOver}}" bindtap="nextQuestion">下一题</button>
+    <button class="btn restart" wx:if="{{gameOver}}" bindtap="restart">再来一局</button>
+  </view>
+</view>
