@@ -1,4 +1,4 @@
-const { questionBank } = require('../../utils/questions')
+const { poetryQuestionBank } = require('../../utils/poetryQuestions')
 
 function shuffle(arr) {
   const copy = [...arr]
@@ -14,16 +14,16 @@ const TOTAL_TIME = 300
 const SCORE_PER_LEVEL = 2
 
 function saveResult(result) {
-  const history = wx.getStorageSync('lantern_quiz_history') || []
+  const history = wx.getStorageSync('poetry_quiz_history') || []
   const nextHistory = [result].concat(history).slice(0, 10)
-  wx.setStorageSync('lantern_quiz_history', nextHistory)
+  wx.setStorageSync('poetry_quiz_history', nextHistory)
 
-  const best = wx.getStorageSync('lantern_quiz_best') || { maxLevel: 0, bestScore: 0 }
+  const best = wx.getStorageSync('poetry_quiz_best') || { maxLevel: 0, bestScore: 0 }
   if (
     result.passedLevel > Number(best.maxLevel || 0) ||
     (result.passedLevel === Number(best.maxLevel || 0) && result.score > Number(best.bestScore || 0))
   ) {
-    wx.setStorageSync('lantern_quiz_best', {
+    wx.setStorageSync('poetry_quiz_best', {
       maxLevel: result.passedLevel,
       bestScore: result.score,
       updatedAt: result.createdAt
@@ -54,7 +54,7 @@ Page({
   },
 
   startGame() {
-    const selectedQuestions = shuffle(questionBank).slice(0, TOTAL_LEVELS)
+    const selectedQuestions = shuffle(poetryQuestionBank).slice(0, TOTAL_LEVELS)
     this.questions = selectedQuestions
     this.qIndex = 0
 
@@ -80,7 +80,7 @@ Page({
       const next = this.data.timeLeft - 1
       if (next <= 0) {
         this.setData({ timeLeft: 0 })
-        this.finishGame('时间到！')
+        this.finishGame('时间到！', false)
         return
       }
       this.setData({ timeLeft: next })
@@ -157,7 +157,7 @@ Page({
     })
 
     wx.redirectTo({
-      url: `/pages/lantern-result/index?pass=${result.isPass ? 1 : 0}&score=${result.score}&level=${result.passedLevel}&total=${result.total}&timeLeft=${result.timeLeft}`
+      url: `/pages/lantern-result/index?mode=poetry&pass=${result.isPass ? 1 : 0}&score=${result.score}&level=${result.passedLevel}&total=${result.total}&timeLeft=${result.timeLeft}`
     })
   },
 

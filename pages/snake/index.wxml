@@ -1,24 +1,55 @@
-<view class="container">
-  <view class="card">
-    <view class="meta">
-      <text>分数 {{score}}</text>
-      <text>速度 {{speed}}ms</text>
+<view class="container snake-page">
+  <view class="hero-panel">
+    <view>
+      <view class="eyebrow">NEON MODE</view>
+      <view class="title">贪吃蛇</view>
+      <view class="subtitle">更流畅的节奏，更现代的视觉质感</view>
     </view>
-    <view class="board">
-      <view wx:for="{{cells}}" wx:key="index" class="cell {{item}}"></view>
+    <view class="status-chip {{isGameOver ? 'danger' : isRunning ? 'active' : ''}}">{{statusText}}</view>
+  </view>
+
+  <view class="stats-grid">
+    <view class="stat-card">
+      <view class="stat-label">当前得分</view>
+      <view class="stat-value">{{score}}</view>
     </view>
-    <view class="ctrl">
-      <button class="btn" bindtap="start">开始</button>
-      <button class="btn" bindtap="pause">暂停</button>
-      <button class="btn" bindtap="reset">重开</button>
+    <view class="stat-card">
+      <view class="stat-label">最佳成绩</view>
+      <view class="stat-value">{{bestScore}}</view>
     </view>
-    <view class="dpad">
-      <button bindtap="up">上</button>
-      <view class="row">
-        <button bindtap="left">左</button>
-        <button bindtap="right">右</button>
+    <view class="stat-card">
+      <view class="stat-label">移动速度</view>
+      <view class="stat-value small">{{speed}}ms</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-label">蛇身长度</view>
+      <view class="stat-value">{{length}}</view>
+    </view>
+  </view>
+
+  <view class="game-shell card">
+    <view class="board-frame" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd">
+      <view class="board-glow"></view>
+      <view class="board">
+        <view wx:for="{{cells}}" wx:key="index" class="cell {{item}}"></view>
       </view>
-      <button bindtap="down">下</button>
+    </view>
+
+    <view class="hint">支持滑动操作，也可使用下方方向键</view>
+
+    <view class="ctrl modern-ctrl">
+      <button class="action-btn primary" bindtap="start">开始</button>
+      <button class="action-btn ghost" bindtap="pause">暂停</button>
+      <button class="action-btn ghost" bindtap="reset">重开</button>
+    </view>
+
+    <view class="dpad modern-pad">
+      <button class="pad-btn vertical" bindtap="up">↑</button>
+      <view class="row">
+        <button class="pad-btn" bindtap="left">←</button>
+        <button class="pad-btn" bindtap="right">→</button>
+      </view>
+      <button class="pad-btn vertical" bindtap="down">↓</button>
     </view>
   </view>
 </view>

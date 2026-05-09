@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "贪吃蛇"
+  "navigationBarTitleText": "贪吃蛇",
+  "navigationBarBackgroundColor": "#0f172a",
+  "navigationBarTextStyle": "white"
 }

@@ -1,10 +1,14 @@
 {
   "pages": [
     "pages/home/index",
+    "pages/index/index",
+    "pages/poetry/index",
+    "pages/lantern-result/index",
     "pages/tetris/index",
     "pages/snake/index",
     "pages/gomoku/index",
-    "pages/game2048/index"
+    "pages/game2048/index",
+    "pages/pinball/index"
   ],
   "window": {
     "navigationBarTitleText": "怀古小游戏",

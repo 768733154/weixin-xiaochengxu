@@ -1,0 +1,73 @@
+<view class="container pin-page">
+  <view class="card panel">
+    <view>
+      <view class="title">见缝插针</view>
+      <view class="subtitle">渐进式关卡 · 旋转节奏挑战</view>
+    </view>
+    <view class="meta">
+      <text>第 {{level}} / {{totalLevels}} 关</text>
+      <text>剩余 {{remainingPins}} 针</text>
+      <text>得分 {{score}}</text>
+    </view>
+    <view class="status">{{statusText}}</view>
+  </view>
+
+  <view class="card arena-card">
+    <view class="arena" bindtap="handleArenaTap">
+      <view class="disc-glow"></view>
+      <view class="disc-shadow"></view>
+      <view class="disc-wrap" style="{{discStyle}}">
+        <view class="pin attached" wx:for="{{attachedPins}}" wx:key="key" style="{{item.style}}">
+          <view class="pin-line"></view>
+          <view class="pin-head"></view>
+        </view>
+        <view class="disc-core">
+          <view class="disc-level">Lv.{{level}}</view>
+        </view>
+      </view>
+
+      <view class="pin current" style="{{currentPinStyle}}">
+        <view class="pin-line"></view>
+        <view class="pin-head"></view>
+      </view>
+    </view>
+
+    <view class="queue">
+      <view class="queue-pin" wx:for="{{queuePins}}" wx:key="index"></view>
+    </view>
+
+    <view class="ctrl">
+      <button class="btn fire-btn" bindtap="shootPin">{{actionText}}</button>
+      <button class="btn retry-btn" wx:if="{{gameOver}}" bindtap="restartLevel">重试本关</button>
+      <button class="btn restart-btn" wx:if="{{completed || gameOver}}" bindtap="restartGame">从第 1 关重开</button>
+    </view>
+
+    <view class="hint">提示：点击盘面任意位置或使用按钮发射。</view>
+    <view class="fail-text" wx:if="{{failText}}">{{failText}}</view>
+  </view>
+
+  <view class="card leaderboard-card">
+    <view class="section-title">最佳记录</view>
+    <view class="best-box" wx:if="{{bestRecord}}">
+      <view class="best-level">{{bestRecord.title}}</view>
+      <view class="best-meta">
+        <text>{{bestRecord.score}} 分</text>
+        <text>{{bestRecord.time}}</text>
+      </view>
+    </view>
+    <view class="empty" wx:else>暂无记录，开始挑战吧。</view>
+
+    <view class="section-title sub">本地排行榜</view>
+    <view wx:if="{{leaderboard.length}}">
+      <view class="leader-item" wx:for="{{leaderboard}}" wx:key="rank">
+        <text class="rank-no">#{{item.rank}}</text>
+        <view class="leader-main">
+          <view class="leader-label">{{item.label}}</view>
+          <view class="leader-time">{{item.time}}</view>
+        </view>
+        <text class="leader-score">{{item.score}}分</text>
+      </view>
+    </view>
+    <view class="empty" wx:else>暂无历史成绩，闯关即可解锁。</view>
+  </view>
+</view>

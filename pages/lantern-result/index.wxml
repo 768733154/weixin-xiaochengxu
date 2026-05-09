@@ -1,0 +1,49 @@
+<view class="container result-page">
+  <view class="card banner {{isPass ? 'pass' : 'fail'}}">
+    <view class="result-title">{{title}}</view>
+    <view class="result-subtitle">{{subtitle}}</view>
+  </view>
+
+  <view class="card stats-card">
+    <view class="stats-row">
+      <view class="stat-item">
+        <view class="stat-label">本轮得分</view>
+        <view class="stat-value">{{score}}</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-label">完成关卡</view>
+        <view class="stat-value">{{level}} / {{total}}</view>
+      </view>
+    </view>
+    <view class="reward-box">
+      <view class="reward-title">{{rewardTitle}}</view>
+      <view class="reward-text">{{rewardText}}</view>
+    </view>
+  </view>
+
+  <view class="card record-card" wx:if="{{best}}">
+    <view class="section-title">最高记录</view>
+    <view class="record-line">最高通关：第 {{best.maxLevel}} 关</view>
+    <view class="record-line">最高得分：{{best.bestScore}}</view>
+  </view>
+
+  <view class="card ranking-card">
+    <view class="section-title">本地排行榜</view>
+    <view wx:if="{{ranking.length}}">
+      <view class="ranking-item" wx:for="{{ranking}}" wx:key="rank">
+        <text class="rank-no">#{{item.rank}}</text>
+        <view class="rank-main">
+          <view class="rank-label">{{item.label}}</view>
+          <view class="rank-time">{{item.time}}</view>
+        </view>
+        <text class="rank-score">{{item.score}}分</text>
+      </view>
+    </view>
+    <view class="empty-text" wx:else>暂无记录</view>
+  </view>
+
+  <view class="action-group">
+    <button class="btn primary-btn" bindtap="playAgain">再来一局</button>
+    <button class="btn secondary-btn" bindtap="backHome">返回首页</button>
+  </view>
+</view>

@@ -1,6 +1,6 @@
 <view class="container">
   <view class="card panel">
-    <view class="title">猜灯谜闯关</view>
+    <view class="title">古诗词闯关</view>
     <view class="level-badge">{{levelTitle}}</view>
     <view class="meta">
       <text>第 {{current}} / {{total}} 关</text>

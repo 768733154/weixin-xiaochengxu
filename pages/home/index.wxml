@@ -8,4 +8,7 @@
   <navigator url="/pages/snake/index" class="card nav">贪吃蛇</navigator>
   <navigator url="/pages/gomoku/index" class="card nav">五子棋</navigator>
   <navigator url="/pages/game2048/index" class="card nav">2048</navigator>
+  <navigator url="/pages/pinball/index" class="card nav">见缝插针</navigator>
+  <navigator url="/pages/index/index" class="card nav">猜灯谜闯关</navigator>
+  <navigator url="/pages/poetry/index" class="card nav">古诗词闯关</navigator>
 </view>
