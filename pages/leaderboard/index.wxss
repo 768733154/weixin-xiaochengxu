@@ -1,0 +1,125 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.game-picker {
+  background: #f0e6d6;
+  padding: 12rpx 24rpx;
+  border-radius: 999rpx;
+}
+
+.picker-text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #5a4023;
+}
+
+.tab-switch {
+  display: flex;
+  gap: 0;
+  border-radius: 999rpx;
+  overflow: hidden;
+  border: 2rpx solid #d8c3a5;
+}
+
+.tab-btn {
+  padding: 10rpx 28rpx;
+  font-size: 26rpx;
+  color: #7a5a36;
+  background: rgba(255, 250, 242, 0.95);
+}
+
+.tab-btn.active {
+  background: #7a5834;
+  color: #fff;
+}
+
+.rank-list {
+  margin-top: 12rpx;
+}
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  background: rgba(255, 250, 242, 0.95);
+  border: 2rpx solid #e8d5b8;
+  border-radius: 16rpx;
+  margin-bottom: 12rpx;
+}
+
+.rank-item.is-me {
+  border-color: #c97a3e;
+  background: linear-gradient(180deg, #fff8ed 0%, #fef0da 100%);
+}
+
+.rank-num {
+  width: 56rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #9a8468;
+}
+
+.top3 .medal {
+  font-size: 36rpx;
+}
+
+.rank-avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  margin-left: 16rpx;
+  border: 2rpx solid #e8d5b8;
+  background: #f0e6d6;
+}
+
+.rank-avatar-text {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  margin-left: 16rpx;
+  border: 2rpx solid #e8d5b8;
+  background: #f0e6d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+}
+
+.rank-name {
+  flex: 1;
+  margin-left: 16rpx;
+  font-size: 28rpx;
+  color: #3a2b1a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rank-score {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #c97a3e;
+}
+
+.empty {
+  text-align: center;
+  padding: 120rpx 0;
+}
+
+.empty-text {
+  display: block;
+  font-size: 32rpx;
+  color: #9a8468;
+  margin-bottom: 12rpx;
+}
+
+.empty-hint {
+  display: block;
+  font-size: 26rpx;
+  color: #c4a882;
+}

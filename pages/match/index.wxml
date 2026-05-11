@@ -1,0 +1,42 @@
+<view class="container">
+  <!-- 创建中 -->
+  <view class="match-card card" wx:if="{{status === 'creating'}}">
+    <view class="spinner"></view>
+    <text class="match-text">正在准备房间...</text>
+  </view>
+
+  <!-- 等待好友加入 -->
+  <view class="match-card card" wx:elif="{{status === 'waiting'}}">
+    <text class="match-title">等待对手加入</text>
+    <view class="room-info">
+      <text class="room-label">房间号</text>
+      <text class="room-id">{{roomId}}</text>
+    </view>
+    <view class="waiting-actions">
+      <button class="action-btn copy" bindtap="copyRoomId">复制房间号</button>
+      <button class="action-btn share" open-type="share">分享邀请好友</button>
+    </view>
+    <text class="match-hint">将房间号分享给好友，或点击右上角分享</text>
+  </view>
+
+  <!-- 随机匹配中 -->
+  <view class="match-card card" wx:elif="{{status === 'matching'}}">
+    <view class="spinner"></view>
+    <text class="match-title">正在匹配对手...</text>
+    <text class="match-timer">{{matchTimer}}s</text>
+    <text class="match-hint">最长等待 30 秒</text>
+    <button class="action-btn cancel" bindtap="cancelMatch">取消匹配</button>
+  </view>
+
+  <!-- 匹配成功 -->
+  <view class="match-card card success" wx:elif="{{status === 'matched'}}">
+    <text class="match-title success-text">匹配成功！</text>
+    <text class="match-hint">正在进入游戏...</text>
+  </view>
+
+  <!-- 错误 -->
+  <view class="match-card card error" wx:elif="{{status === 'error'}}">
+    <text class="match-title error-text">{{errorMsg}}</text>
+    <button class="action-btn retry" bindtap="cancelMatch">返回</button>
+  </view>
+</view>

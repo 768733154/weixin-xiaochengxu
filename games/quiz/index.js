@@ -1,4 +1,6 @@
-const { questionBank } = require('../../utils/questions')
+const { questionBank } = require('./questions')
+const manifest = require('./manifest')
+const leaderboard = require('../../core/leaderboard')
 
 function shuffle(arr) {
   const copy = [...arr]
@@ -26,14 +28,25 @@ Page({
     this.startGame()
   },
 
+  onHide() {
+    this.clearTimer()
+  },
+
   onUnload() {
     this.clearTimer()
+  },
+
+  onShow() {
+    if (this._wasPlaying && !this.data.gameOver && !this.timer) {
+      this.startTimer()
+    }
   },
 
   startGame() {
     const selectedQuestions = shuffle(questionBank).slice(0, 5)
     this.questions = selectedQuestions
     this.qIndex = 0
+    this._wasPlaying = true
 
     this.setData({
       total: selectedQuestions.length,
@@ -108,6 +121,8 @@ Page({
 
   finishGame(tip) {
     this.clearTimer()
+    this._wasPlaying = false
+    leaderboard.submitScore(manifest.id, this.data.score)
     this.setData({
       gameOver: true,
       message: `${tip} 最终得分：${this.data.score}`
@@ -116,5 +131,12 @@ Page({
 
   restart() {
     this.startGame()
+  },
+
+  onShareAppMessage() {
+    return {
+      title: `我在诗词闯关拿到了${this.data.score}分，来挑战！`,
+      path: `/games/quiz/index?from=share&gameId=${manifest.id}`
+    }
   }
 })

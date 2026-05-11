@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" bindtouchstart="{{swipeTouchStart}}" bindtouchend="{{swipeTouchEnd}}">
   <view class="card">
     <view class="meta"><text>分数 {{score}}</text><button size="mini" bindtap="reset">重开</button></view>
     <view class="board">

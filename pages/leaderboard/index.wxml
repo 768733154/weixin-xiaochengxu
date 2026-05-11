@@ -1,0 +1,42 @@
+<view class="container">
+  <!-- 顶部：游戏选择 + Tab -->
+  <view class="card header">
+    <picker class="game-picker" range="{{games}}" range-key="name" value="{{games.findIndex(g=>g.id===selectedGameId)}}" bindchange="onGameChange">
+      <view class="picker-text">{{selectedGameName}} &#9660;</view>
+    </picker>
+
+    <view class="tab-switch">
+      <view class="tab-btn {{tabType==='global' ? 'active' : ''}}" data-type="global" bindtap="switchTab">全局</view>
+      <view class="tab-btn {{tabType==='friends' ? 'active' : ''}}" data-type="friends" bindtap="switchTab">好友</view>
+    </view>
+  </view>
+
+  <!-- 骨架屏 -->
+  <block wx:if="{{loading}}">
+    <view class="skeleton-card" wx:for="{{[1,2,3,4,5]}}" wx:key="*this"></view>
+  </block>
+
+  <!-- 排行列表 -->
+  <block wx:elif="{{rankingList.length}}">
+    <view class="rank-list">
+      <view class="rank-item {{myRank === index+1 ? 'is-me' : ''}}" wx:for="{{rankingList}}" wx:key="index">
+        <view class="rank-num {{index < 3 ? 'top3' : ''}}">
+          <text wx:if="{{index < 3}}" class="medal">{{index === 0 ? '&#127942;' : index === 1 ? '&#129351;' : '&#129352;'}}</text>
+          <text wx:else>{{index + 1}}</text>
+        </view>
+        <view class="rank-avatar-text" wx:if="{{!item.avatarUrl}}">👤</view>
+        <image class="rank-avatar" wx:elif="{{item.avatarUrl}}" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+        <text class="rank-name">{{item.nickName || '玩家'}}</text>
+        <text class="rank-score">{{item.score}}</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 空状态 -->
+  <block wx:else>
+    <view class="empty">
+      <text class="empty-text">暂无排行数据</text>
+      <text class="empty-hint">快去挑战，争当第一名！</text>
+    </view>
+  </block>
+</view>

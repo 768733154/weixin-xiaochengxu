@@ -1,13 +1,25 @@
 {
   "pages": [
     "pages/home/index",
-    "pages/tetris/index",
-    "pages/snake/index",
-    "pages/gomoku/index",
-    "pages/game2048/index"
+    "pages/leaderboard/index",
+    "pages/profile/index",
+    "pages/match/index"
   ],
+  "subpackages": [
+    { "root": "games/tetris", "name": "tetris", "pages": ["index"] },
+    { "root": "games/snake", "name": "snake", "pages": ["index"] },
+    { "root": "games/gomoku", "name": "gomoku", "pages": ["index"] },
+    { "root": "games/game2048", "name": "game2048", "pages": ["index"] },
+    { "root": "games/quiz", "name": "quiz", "pages": ["index"] }
+  ],
+  "preloadRule": {
+    "pages/home/index": {
+      "network": "all",
+      "packages": ["tetris", "snake", "gomoku", "game2048", "quiz"]
+    }
+  },
   "window": {
-    "navigationBarTitleText": "怀古小游戏",
+    "navigationBarTitleText": "游戏百宝箱",
     "navigationBarBackgroundColor": "#2f2216",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#f6efe4",
