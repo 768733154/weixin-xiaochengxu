@@ -6,6 +6,7 @@ Page({
   data: {
     loading: true,
     games: [],
+    selectedGameIndex: 0,
     selectedGameId: '',
     selectedGameName: '',
     tabType: 'global',       // 'global' | 'friends'
@@ -18,7 +19,7 @@ Page({
     const games = registry.getAll()
     const selectedGameId = games.length ? games[0].id : ''
     const selectedGameName = games.length ? games[0].name : ''
-    this.setData({ games, selectedGameId, selectedGameName })
+    this.setData({ games, selectedGameIndex: 0, selectedGameId, selectedGameName })
     this.loadRanking()
   },
 
@@ -32,6 +33,7 @@ Page({
     const idx = Number(e.detail.value)
     const game = this.data.games[idx]
     this.setData({
+      selectedGameIndex: idx,
       selectedGameId: game.id,
       selectedGameName: game.name
     })

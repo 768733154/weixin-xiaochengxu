@@ -1,7 +1,7 @@
 <view class="container">
   <!-- 顶部：游戏选择 + Tab -->
   <view class="card header">
-    <picker class="game-picker" range="{{games}}" range-key="name" value="{{games.findIndex(g=>g.id===selectedGameId)}}" bindchange="onGameChange">
+    <picker class="game-picker" range="{{games}}" range-key="name" value="{{selectedGameIndex}}" bindchange="onGameChange">
       <view class="picker-text">{{selectedGameName}} &#9660;</view>
     </picker>
 
