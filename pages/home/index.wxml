@@ -1,4 +1,4 @@
-<view class="container">
+<view class="page">
   <!-- 骨架屏 -->
   <block wx:if="{{loading}}">
     <view class="skeleton-card"></view>
@@ -10,20 +10,20 @@
   <!-- 真实内容 -->
   <block wx:else>
     <!-- 用户栏 -->
-    <view class="user-bar card" bindtap="onTapUser">
+    <view class="user-bar" bindtap="onTapUser">
       <view class="user-avatar-text" wx:if="{{!userInfo.avatarUrl}}">👤</view>
       <image class="user-avatar" wx:elif="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
       <view class="user-info">
-        <text class="user-name">{{userInfo.nickName || '点击登录'}}</text>
-        <text class="user-hint">{{userInfo.authorized ? '游戏达人' : '登录后查看排行榜'}}</text>
+        <text class="user-name">{{userInfo.nickName || '点击设置昵称'}}</text>
+        <text class="user-hint">{{userInfo.authorized ? '游戏达人' : '设置头像昵称，参与排行'}}</text>
       </view>
+      <view class="user-arrow">›</view>
     </view>
 
     <!-- 对战游戏 -->
     <block wx:if="{{pvpGames.length}}">
       <view class="section-title">
-        <text class="section-icon">&#9876;</text>
-        <text>对战游戏</text>
+        <text>⚔ 对战游戏</text>
       </view>
       <view class="game-grid">
         <view
@@ -34,9 +34,9 @@
           data-path="{{item.path}}"
           bindtap="navigateToGame"
         >
-          <view class="game-icon-wrap" style="background: {{item.color}}20;">
+          <view class="game-icon-wrap" style="background: {{item.color}}18;">
             <text class="game-icon-emoji">{{item.icon}}</text>
-            <view class="pvp-badge">对战</view>
+            <view class="pvp-badge">⚔</view>
           </view>
           <text class="game-name">{{item.name}}</text>
           <view class="game-tags">
@@ -48,8 +48,7 @@
 
     <!-- 单人游戏 -->
     <view class="section-title">
-      <text class="section-icon">&#127918;</text>
-      <text>单人游戏</text>
+      <text>🎮 单人游戏</text>
     </view>
     <view class="game-grid">
       <view
@@ -60,8 +59,8 @@
         data-path="{{item.path}}"
         bindtap="navigateToGame"
       >
-        <view class="game-icon-wrap">
-          <image class="game-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <view class="game-icon-wrap" style="background: {{item.color}}18;">
+          <text class="game-icon-emoji">{{item.icon}}</text>
         </view>
         <text class="game-name">{{item.name}}</text>
         <view class="game-tags">
@@ -71,7 +70,7 @@
       </view>
     </view>
 
-    <!-- 底部占位，避免被 TabBar 遮挡 -->
+    <!-- 底部占位 -->
     <view class="bottom-space"></view>
   </block>
 </view>
@@ -79,15 +78,15 @@
 <!-- 底部 Tab -->
 <view class="tab-bar">
   <view class="tab-item active" data-tab="home" bindtap="switchTab">
-    <text class="tab-icon">&#127968;</text>
-    <text>游戏</text>
+    <text class="tab-icon">🏠</text>
+    <text class="tab-label">游戏</text>
   </view>
   <view class="tab-item" data-tab="leaderboard" bindtap="switchTab">
-    <text class="tab-icon">&#127942;</text>
-    <text>排行榜</text>
+    <text class="tab-icon">🏆</text>
+    <text class="tab-label">排行榜</text>
   </view>
   <view class="tab-item" data-tab="profile" bindtap="switchTab">
-    <text class="tab-icon">&#128100;</text>
-    <text>我的</text>
+    <text class="tab-icon">👤</text>
+    <text class="tab-label">我的</text>
   </view>
 </view>

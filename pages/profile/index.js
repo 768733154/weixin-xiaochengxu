@@ -8,7 +8,9 @@ Page({
     userInfo: null,
     gameScores: [],
     totalGames: 0,
-    bestGame: null
+    bestGame: null,
+    editingNickName: false,
+    nickNameInput: ''
   },
 
   onLoad() {
@@ -48,17 +50,37 @@ Page({
     return registry.getAll().map(g => ({
       id: g.id,
       name: g.name,
+      icon: g.icon,
+      color: g.color,
       category: g.category,
       score: leaderboard.getBestScore(g.id)
     }))
   },
 
-  // 授权登录
-  async onTapLogin() {
-    try {
-      const info = await user.getUserProfile()
+  // 选择头像
+  onChooseAvatar(e) {
+    const tempFilePath = e.detail.avatarUrl
+    user.saveAvatar(tempFilePath).then(() => {
+      const info = user.getCurrentUser()
       this.setData({ userInfo: info })
-    } catch (e) { /* 用户拒绝 */ }
+    })
+  },
+
+  // 昵称输入
+  onNickNameInput(e) {
+    this.setData({ nickNameInput: e.detail.value })
+  },
+
+  onNickNameConfirm(e) {
+    const nickName = e.detail.value.trim()
+    if (!nickName) return
+    user.saveNickName(nickName)
+    const info = user.getCurrentUser()
+    this.setData({ userInfo: info, editingNickName: false })
+  },
+
+  startEditNickName() {
+    this.setData({ editingNickName: true, nickNameInput: this.data.userInfo?.nickName || '' })
   },
 
   // 清除缓存

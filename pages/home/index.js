@@ -67,12 +67,9 @@ Page({
     return scores
   },
 
-  // 用户登录
-  async onTapUser() {
-    try {
-      const info = await user.getUserProfile()
-      this.setData({ userInfo: info })
-    } catch (e) { /* 用户拒绝授权，忽略 */ }
+  // 用户栏：跳转个人中心设置头像昵称
+  onTapUser() {
+    wx.navigateTo({ url: '/pages/profile/index' })
   },
 
   // 跳转游戏

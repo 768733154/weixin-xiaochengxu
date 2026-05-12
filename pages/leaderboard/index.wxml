@@ -1,8 +1,8 @@
-<view class="container">
+<view class="page">
   <!-- 顶部：游戏选择 + Tab -->
-  <view class="card header">
+  <view class="header">
     <picker class="game-picker" range="{{games}}" range-key="name" value="{{selectedGameIndex}}" bindchange="onGameChange">
-      <view class="picker-text">{{selectedGameName}} &#9660;</view>
+      <view class="picker-text">{{selectedGameName}} ▾</view>
     </picker>
 
     <view class="tab-switch">
@@ -20,9 +20,11 @@
   <block wx:elif="{{rankingList.length}}">
     <view class="rank-list">
       <view class="rank-item {{myRank === index+1 ? 'is-me' : ''}}" wx:for="{{rankingList}}" wx:key="index">
-        <view class="rank-num {{index < 3 ? 'top3' : ''}}">
-          <text wx:if="{{index < 3}}" class="medal">{{index === 0 ? '&#127942;' : index === 1 ? '&#129351;' : '&#129352;'}}</text>
-          <text wx:else>{{index + 1}}</text>
+        <view class="rank-num">
+          <text wx:if="{{index === 0}}" class="medal">🥇</text>
+          <text wx:elif="{{index === 1}}" class="medal">🥈</text>
+          <text wx:elif="{{index === 2}}" class="medal">🥉</text>
+          <text wx:else class="rank-idx">{{index + 1}}</text>
         </view>
         <view class="rank-avatar-text" wx:if="{{!item.avatarUrl}}">👤</view>
         <image class="rank-avatar" wx:elif="{{item.avatarUrl}}" src="{{item.avatarUrl}}" mode="aspectFill"></image>
@@ -35,6 +37,7 @@
   <!-- 空状态 -->
   <block wx:else>
     <view class="empty">
+      <text class="empty-icon">🎮</text>
       <text class="empty-text">暂无排行数据</text>
       <text class="empty-hint">快去挑战，争当第一名！</text>
     </view>

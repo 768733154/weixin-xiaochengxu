@@ -9,20 +9,6 @@ page {
   padding: 32rpx;
 }
 
-.card {
-  background: rgba(255, 250, 242, 0.95);
-  border: 2rpx solid #d8c3a5;
-  border-radius: 24rpx;
-  box-shadow: 0 10rpx 24rpx rgba(58, 43, 26, 0.08);
-  padding: 28rpx;
-}
-
-.btn {
-  margin-top: 20rpx;
-  border-radius: 999rpx;
-  font-weight: 600;
-}
-
 /* 底部 TabBar */
 .tab-bar {
   position: fixed;
@@ -31,9 +17,11 @@ page {
   right: 0;
   height: 110rpx;
   display: flex;
-  background: #fffdf8;
-  border-top: 2rpx solid #e8d5b8;
+  background: rgba(255, 253, 248, 0.96);
+  border-top: 1rpx solid #e8d5b8;
   z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .tab-item {
@@ -42,8 +30,9 @@ page {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #9a8468;
-  font-size: 22rpx;
+  color: #b8a48a;
+  font-size: 20rpx;
+  transition: color 0.15s;
 }
 
 .tab-item.active {
@@ -52,7 +41,12 @@ page {
 
 .tab-icon {
   font-size: 40rpx;
-  margin-bottom: 4rpx;
+  margin-bottom: 2rpx;
+}
+
+.tab-label {
+  font-size: 20rpx;
+  font-weight: 600;
 }
 
 /* 骨架屏 */

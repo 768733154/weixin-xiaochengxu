@@ -1,36 +1,73 @@
-<view class="container">
-  <!-- 用户信息 -->
-  <view class="card profile-card">
-    <view class="profile-avatar-text" wx:if="{{!userInfo.avatarUrl}}">👤</view>
-    <image class="profile-avatar" wx:elif="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
-    <view class="profile-info">
-      <text class="profile-name">{{userInfo.nickName || '游客'}}</text>
+<view class="page">
+  <!-- 头部用户卡片 -->
+  <view class="profile-header">
+    <view class="profile-bg"></view>
+    <view class="profile-card">
+      <!-- 头像：使用 button open-type="chooseAvatar" -->
+      <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+        <view class="avatar-wrap">
+          <image class="avatar-img" wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+          <view class="avatar-placeholder" wx:else>
+            <text class="avatar-icon">👤</text>
+            <text class="avatar-tip">点击设置</text>
+          </view>
+          <view class="avatar-edit">编辑</view>
+        </view>
+      </button>
+
+      <!-- 昵称 -->
+      <view class="nick-area" bindtap="startEditNickName">
+        <input
+          wx:if="{{editingNickName}}"
+          class="nick-input"
+          type="nickname"
+          value="{{nickNameInput}}"
+          bindblur="onNickNameConfirm"
+          bindconfirm="onNickNameConfirm"
+          focus="{{true}}"
+          placeholder="输入昵称"
+        />
+        <text class="nick-name" wx:elif="{{userInfo.nickName}}">{{userInfo.nickName}}</text>
+        <text class="nick-hint" wx:else>点击设置昵称</text>
+      </view>
+
       <text class="profile-stat">已挑战 {{totalGames}} 款游戏</text>
     </view>
-    <button wx:if="{{!userInfo.authorized}}" class="login-btn" bindtap="onTapLogin">登录</button>
   </view>
 
-  <!-- 最佳战绩 -->
-  <view class="card best-card" wx:if="{{bestGame && bestGame.score > 0}}">
-    <text class="best-label">最佳战绩</text>
-    <text class="best-game">{{bestGame.name}}</text>
-    <text class="best-score">{{bestGame.score}} 分</text>
-  </view>
-
-  <!-- 各游戏分数 -->
-  <view class="section-title">游戏成绩</view>
-  <view class="score-list">
-    <view class="score-item card" wx:for="{{gameScores}}" wx:key="id">
-      <view class="score-left">
-        <text class="score-name">{{item.name}}</text>
-        <text class="score-cat">{{item.category === 'pvp' ? '对战' : '单人'}}</text>
+  <view class="content">
+    <!-- 最佳战绩 -->
+    <view class="best-card" wx:if="{{bestGame && bestGame.score > 0}}">
+      <view class="best-left">
+        <text class="best-icon">🏆</text>
+        <text class="best-name">{{bestGame.name}}</text>
       </view>
-      <text class="score-val">{{item.score > 0 ? item.score + ' 分' : '未挑战'}}</text>
+      <text class="best-score">{{bestGame.score}} 分</text>
     </view>
-  </view>
 
-  <!-- 设置 -->
-  <view class="card setting-card" bindtap="clearCache">
-    <text class="setting-text">清除本地缓存</text>
+    <!-- 各游戏分数 -->
+    <view class="section-header">
+      <text class="section-title">游戏成绩</text>
+    </view>
+    <view class="score-list">
+      <view class="score-item" wx:for="{{gameScores}}" wx:key="id">
+        <view class="score-left">
+          <view class="score-icon-wrap" style="background: {{item.color}}18;">
+            <text class="score-icon">{{item.icon}}</text>
+          </view>
+          <view class="score-info">
+            <text class="score-name">{{item.name}}</text>
+            <text class="score-cat">{{item.category === 'pvp' ? '对战' : '单人'}}</text>
+          </view>
+        </view>
+        <text class="score-val {{item.score > 0 ? 'has-score' : ''}}">{{item.score > 0 ? item.score + ' 分' : '未挑战'}}</text>
+      </view>
+    </view>
+
+    <!-- 设置 -->
+    <view class="setting-row" bindtap="clearCache">
+      <text class="setting-text">清除本地缓存</text>
+      <text class="setting-arrow">›</text>
+    </view>
   </view>
 </view>
