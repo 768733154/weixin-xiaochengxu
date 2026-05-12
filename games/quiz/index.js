@@ -21,7 +21,11 @@ Page({
     answered: false,
     gameOver: false,
     question: null,
-    message: ''
+    message: '',
+    showOverModal: false,
+    overScore: 0,
+    overBest: 0,
+    overTip: ''
   },
 
   onLoad() {
@@ -123,10 +127,25 @@ Page({
     this.clearTimer()
     this._wasPlaying = false
     leaderboard.submitScore(manifest.id, this.data.score)
+    const best = leaderboard.getBestScore(manifest.id)
     this.setData({
       gameOver: true,
-      message: `${tip} 最终得分：${this.data.score}`
+      message: `${tip} 最终得分：${this.data.score}`,
+      showOverModal: true,
+      overScore: this.data.score,
+      overBest: Math.max(best, this.data.score),
+      overTip: tip
     })
+  },
+
+  overRestart() {
+    this.setData({ showOverModal: false })
+    this.startGame()
+  },
+
+  overBack() {
+    this.setData({ showOverModal: false })
+    wx.navigateBack()
   },
 
   restart() {

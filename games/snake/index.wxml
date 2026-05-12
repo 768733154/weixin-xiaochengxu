@@ -21,4 +21,26 @@
       <button bindtap="down">下</button>
     </view>
   </view>
+
+  <!-- 游戏结束弹窗 -->
+  <view class="over-mask" wx:if="{{showOverModal}}" catchtouchmove="true">
+    <view class="over-modal">
+      <text class="over-emoji">🐍</text>
+      <text class="over-title">游戏结束</text>
+      <view class="over-stats">
+        <view class="over-stat">
+          <text class="over-stat-val">{{overScore}}</text>
+          <text class="over-stat-label">得分</text>
+        </view>
+        <view class="over-stat">
+          <text class="over-stat-val">{{overBest}}</text>
+          <text class="over-stat-label">最高</text>
+        </view>
+      </view>
+      <view class="over-actions">
+        <view class="over-btn over-restart" bindtap="overRestart">再来一局</view>
+        <view class="over-btn over-back" bindtap="overBack">返回大厅</view>
+      </view>
+    </view>
+  </view>
 </view>

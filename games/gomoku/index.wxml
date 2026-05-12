@@ -40,4 +40,16 @@
 
     <button class="btn" bindtap="resetBoard">重新开始</button>
   </view>
+
+  <!-- 游戏结束弹窗 -->
+  <view class="over-mask" wx:if="{{showOverModal}}" catchtouchmove="true">
+    <view class="over-modal">
+      <text class="over-emoji">{{overWin ? '🎉' : '⚫'}}</text>
+      <text class="over-title">{{overResult}}</text>
+      <view class="over-actions">
+        <view class="over-btn over-restart" bindtap="overRestart">再来一局</view>
+        <view class="over-btn over-back" bindtap="overBack">返回大厅</view>
+      </view>
+    </view>
+  </view>
 </view>

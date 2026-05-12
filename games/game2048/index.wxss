@@ -9,3 +9,87 @@
 .ctrl { margin-top:16rpx; display:flex; flex-direction:column; align-items:center; gap:8rpx; }
 .row { display:flex; gap:30rpx; }
 .ctrl button { width:140rpx; }
+
+/* 游戏结束弹窗 */
+.over-mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.over-modal {
+  width: 540rpx;
+  background: rgba(255, 250, 242, 0.98);
+  border: 2rpx solid #d8c3a5;
+  border-radius: 28rpx;
+  padding: 48rpx 40rpx 36rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.over-emoji {
+  font-size: 64rpx;
+  margin-bottom: 12rpx;
+}
+
+.over-title {
+  font-size: 38rpx;
+  font-weight: 800;
+  color: #3a2b1a;
+  margin-bottom: 32rpx;
+}
+
+.over-stats {
+  display: flex;
+  gap: 60rpx;
+  margin-bottom: 36rpx;
+}
+
+.over-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.over-stat-val {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: #c97a3e;
+}
+
+.over-stat-label {
+  font-size: 22rpx;
+  color: #9a8468;
+  margin-top: 4rpx;
+}
+
+.over-actions {
+  display: flex;
+  gap: 20rpx;
+  width: 100%;
+}
+
+.over-btn {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  border-radius: 999rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.over-restart {
+  background: #b56d35;
+  color: #fff;
+}
+
+.over-back {
+  background: transparent;
+  color: #9a8468;
+  border: 2rpx solid #d8c3a5;
+}

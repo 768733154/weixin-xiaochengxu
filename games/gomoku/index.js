@@ -16,7 +16,10 @@ Page({
     roomInput: '',
     role: 0,
     roleText: '观战',
-    turnText: '黑子'
+    turnText: '黑子',
+    showOverModal: false,
+    overResult: '',
+    overWin: false
   },
 
   onLoad(options) {
@@ -166,20 +169,20 @@ Page({
 
     cells[idx] = 1
     if (engine.checkWin(cells, idx, 1)) {
-      this.setData({ cells, status: 'win_black', statusText: '你赢了！' })
       leaderboard.submitScore(manifest.id, 100)
+      this.setData({ cells, status: 'win_black', showOverModal: true, overResult: '你赢了！', overWin: true })
       return
     }
 
     const aiIdx = engine.pickAiMove(cells, this.data.difficulty)
     if (aiIdx === -1) {
-      this.setData({ cells, status: 'draw', statusText: '平局' })
+      this.setData({ cells, status: 'draw', showOverModal: true, overResult: '平局', overWin: false })
       return
     }
 
     cells[aiIdx] = 2
     if (engine.checkWin(cells, aiIdx, 2)) {
-      this.setData({ cells, status: 'win_white', statusText: '电脑获胜，再来一局吧' })
+      this.setData({ cells, status: 'win_white', showOverModal: true, overResult: '电脑获胜', overWin: false })
       return
     }
 
@@ -216,5 +219,15 @@ Page({
     if (!this.data.roomId || this.data.role !== 1) return
     await room.resetBoard(this.data.roomId)
     this.setData({ statusText: '已重置，黑子先手' })
+  },
+
+  overRestart() {
+    this.setData({ showOverModal: false })
+    this.initBoard()
+  },
+
+  overBack() {
+    this.setData({ showOverModal: false })
+    wx.navigateBack()
   }
 })

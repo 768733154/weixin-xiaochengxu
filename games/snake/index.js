@@ -4,7 +4,7 @@ const leaderboard = require('../../core/leaderboard')
 const gesture = require('../../core/gesture')
 
 Page({
-  data: { cells: [], score: 0, speed: 300 },
+  data: { cells: [], score: 0, speed: 300, showOverModal: false, overScore: 0, overBest: 0 },
 
   onLoad() {
     this.reset()
@@ -65,16 +65,8 @@ Page({
       this.stop()
       this._wasPlaying = false
       leaderboard.submitScore(manifest.id, this.state.score)
-      wx.showModal({
-        title: '游戏结束',
-        content: `得分：${this.state.score}`,
-        confirmText: '再来一局',
-        cancelText: '返回',
-        success: res => {
-          if (res.confirm) this.reset()
-          else wx.navigateBack()
-        }
-      })
+      const best = leaderboard.getBestScore(manifest.id)
+      this.setData({ showOverModal: true, overScore: this.state.score, overBest: Math.max(best, this.state.score) })
       return
     }
 
@@ -90,6 +82,16 @@ Page({
   render() {
     const cells = engine.render(this.state)
     this.setData({ cells })
+  },
+
+  overRestart() {
+    this.setData({ showOverModal: false })
+    this.reset()
+  },
+
+  overBack() {
+    this.setData({ showOverModal: false })
+    wx.navigateBack()
   },
 
   onShareAppMessage() {
