@@ -1,10 +1,10 @@
 <view class="page">
   <!-- 骨架屏 -->
   <block wx:if="{{loading}}">
-    <view class="skeleton-card"></view>
-    <view class="skeleton-card"></view>
-    <view class="skeleton-card"></view>
-    <view class="skeleton-card"></view>
+    <view class="skeleton-row"></view>
+    <view class="skeleton-row"></view>
+    <view class="skeleton-row"></view>
+    <view class="skeleton-row"></view>
   </block>
 
   <!-- 真实内容 -->
@@ -22,51 +22,57 @@
 
     <!-- 对战游戏 -->
     <block wx:if="{{pvpGames.length}}">
-      <view class="section-title">
-        <text>⚔ 对战游戏</text>
-      </view>
-      <view class="game-grid">
+      <view class="section-title">⚔ 对战游戏</view>
+      <view class="game-list">
         <view
-          class="game-card pvp-card"
+          class="game-row pvp-row"
           wx:for="{{pvpGames}}"
           wx:key="id"
           data-id="{{item.id}}"
           data-path="{{item.path}}"
           bindtap="navigateToGame"
         >
-          <view class="game-icon-wrap" style="background: {{item.color}}18;">
-            <text class="game-icon-emoji">{{item.icon}}</text>
-            <view class="pvp-badge">⚔</view>
+          <view class="game-icon-box" style="background: {{item.color}}18;">
+            <text class="game-emoji">{{item.icon}}</text>
           </view>
-          <text class="game-name">{{item.name}}</text>
-          <view class="game-tags">
-            <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+          <view class="game-detail">
+            <view class="game-top">
+              <text class="game-name">{{item.name}}</text>
+              <view class="pvp-tag">⚔ 对战</view>
+            </view>
+            <view class="game-tags">
+              <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+            </view>
           </view>
+          <text class="game-arrow">›</text>
         </view>
       </view>
     </block>
 
     <!-- 单人游戏 -->
-    <view class="section-title">
-      <text>🎮 单人游戏</text>
-    </view>
-    <view class="game-grid">
+    <view class="section-title">🎮 单人游戏</view>
+    <view class="game-list">
       <view
-        class="game-card"
+        class="game-row"
         wx:for="{{singleGames}}"
         wx:key="id"
         data-id="{{item.id}}"
         data-path="{{item.path}}"
         bindtap="navigateToGame"
       >
-        <view class="game-icon-wrap" style="background: {{item.color}}18;">
-          <text class="game-icon-emoji">{{item.icon}}</text>
+        <view class="game-icon-box" style="background: {{item.color}}18;">
+          <text class="game-emoji">{{item.icon}}</text>
         </view>
-        <text class="game-name">{{item.name}}</text>
-        <view class="game-tags">
-          <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+        <view class="game-detail">
+          <view class="game-top">
+            <text class="game-name">{{item.name}}</text>
+            <text class="game-best" wx:if="{{bestScores[item.id]}}">{{bestScores[item.id]}} 分</text>
+          </view>
+          <view class="game-tags">
+            <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+          </view>
         </view>
-        <text class="game-best" wx:if="{{bestScores[item.id]}}">最高 {{bestScores[item.id]}}</text>
+        <text class="game-arrow">›</text>
       </view>
     </view>
 
